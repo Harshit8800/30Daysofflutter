@@ -40,14 +40,34 @@ class _HomePageState extends State<HomePage> {
         child: (CatalogModel.items != null && CatalogModel.items!.isNotEmpty)
             ? GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
                     crossAxisCount: 2),
                 itemBuilder: (context, index) {
                   final item = CatalogModel.items![index];
                   return Card(
                       clipBehavior: Clip.antiAlias,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      child: GridTile(child: Image.network(item.image!)));
+                          borderRadius: BorderRadius.circular(10)),
+                      child: GridTile(
+                        header: Container(
+                          padding: EdgeInsets.all(12),
+                          child: Text(
+                            item.name!,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          decoration: BoxDecoration(color: Colors.purple),
+                        ),
+                        child: Image.network(item.image!),
+                        footer: Container(
+                          padding: EdgeInsets.all(12),
+                          child: Text(
+                            item.price!.toString(),
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          decoration: BoxDecoration(color: Colors.black),
+                        ),
+                      ));
                 },
                 itemCount: CatalogModel.items!.length,
               )

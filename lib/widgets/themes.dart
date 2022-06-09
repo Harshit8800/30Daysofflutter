@@ -10,8 +10,12 @@ class MyTheme {
           titleTextStyle: TextStyle(
               color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold)),
       primarySwatch: Colors.purple,
-      fontFamily: GoogleFonts.lato().fontFamily);
+      fontFamily: GoogleFonts.poppins().fontFamily);
 
   static ThemeData darkTheme(BuildContext context) =>
       ThemeData(brightness: Brightness.dark);
+
+  //Color
+  static const creamColor = Color(0xfff5f5f5);
+  static const darkBluishColor = Color(0xff043b58);
 }

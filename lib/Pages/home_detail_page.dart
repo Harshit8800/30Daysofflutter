@@ -25,12 +25,14 @@ class HomeDetailPage extends StatelessWidget {
                   backgroundColor:
                       MaterialStateProperty.all(MyTheme.darkBluishColor),
                   shape: MaterialStateProperty.all(StadiumBorder())),
-              child: "Buy".text.make(),
-            ).wh(100, 40)
+              child: "Add To Cart".text.make(),
+            ).wh(120, 45)
           ],
         ).p16(),
       ),
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: MyTheme.creamColor,
       body: SafeArea(
         bottom: false,
@@ -58,6 +60,14 @@ class HomeDetailPage extends StatelessWidget {
                             .textStyle(context.captionStyle)
                             .make(),
                         10.heightBox,
+                        """A slim and stylish design makes the Mobile lightweight and easy to carry around._
+- Phone is 4 months old and in great condition.
+- Rechargeable Li-Ion Battery
+- Comes with charger and screen protector."""
+                            .text
+                            .textStyle(context.captionStyle)
+                            .make()
+                            .p16()
                       ],
                     ).py64()),
               ),

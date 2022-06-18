@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/core/store.dart';
 import 'package:flutter_catalog/models/catalog.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CartModel {
 //singleton
@@ -35,12 +37,22 @@ class CartModel {
 
   //add Item
 
-  void add(Item item) {
-    _itemIds.add(item.id!);
-  }
+  // void add(Item item) {
+  //   _itemIds.add(item.id!);
+  // }
 
   //remove
   void remove(Item item) {
     _itemIds.remove(item.id);
+  }
+}
+
+class AddMutation extends VxMutation<MyStore> {
+  final Item? item;
+
+  AddMutation(this.item);
+  @override
+  perform() {
+    store!.cart._itemIds.add(item!.id!);
   }
 }

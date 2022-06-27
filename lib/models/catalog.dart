@@ -22,7 +22,7 @@ class Item {
   final int? id;
   final String? name;
   final String? desc;
-  final num? price;
+  final num? amount;
   final String? color;
   final String? image;
 
@@ -30,7 +30,7 @@ class Item {
     this.id,
     this.name,
     this.desc,
-    this.price,
+    this.amount,
     this.color,
     this.image,
   });
@@ -39,7 +39,7 @@ class Item {
     int? id,
     String? name,
     String? desc,
-    num? price,
+    num? amount,
     String? color,
     String? image,
   }) {
@@ -47,7 +47,7 @@ class Item {
       id: id ?? this.id,
       name: name ?? this.name,
       desc: desc ?? this.desc,
-      price: price ?? this.price,
+      amount: amount ?? this.amount,
       color: color ?? this.color,
       image: image ?? this.image,
     );
@@ -58,7 +58,7 @@ class Item {
       'id': id,
       'name': name,
       'desc': desc,
-      'price': price,
+      'amount': amount,
       'color': color,
       'image': image,
     };
@@ -69,7 +69,7 @@ class Item {
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] != null ? map['name'] as String : null,
       desc: map['desc'] != null ? map['desc'] as String : null,
-      price: map['price'] != null ? map['price'] as num : null,
+      amount: map['amount'] != null ? map['amount'] as num : null,
       color: map['color'] != null ? map['color'] as String : null,
       image: map['image'] != null ? map['image'] as String : null,
     );
@@ -82,7 +82,7 @@ class Item {
 
   @override
   String toString() {
-    return 'Item(id: $id, name: $name, desc: $desc, price: $price, color: $color, image: $image)';
+    return 'Item(id: $id, name: $name, desc: $desc, amount: $amount, color: $color, image: $image)';
   }
 
   @override
@@ -93,7 +93,7 @@ class Item {
         other.id == id &&
         other.name == name &&
         other.desc == desc &&
-        other.price == price &&
+        other.amount == amount &&
         other.color == color &&
         other.image == image;
   }
@@ -103,7 +103,7 @@ class Item {
     return id.hashCode ^
         name.hashCode ^
         desc.hashCode ^
-        price.hashCode ^
+        amount.hashCode ^
         color.hashCode ^
         image.hashCode;
   }

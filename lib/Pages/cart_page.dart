@@ -49,8 +49,13 @@ class _CartTotal extends StatelessWidget {
                 content: "Buying Not Suported Yet".text.make(),
               ));
             },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+                Color.fromARGB(255, 39, 143, 199),
+              ),
+            ),
             child: "Buy".text.make(),
-          ).w32(
+          ).w40(
             context,
           ),
         ],

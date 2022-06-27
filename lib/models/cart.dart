@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 import 'package:flutter_catalog/core/store.dart';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -33,7 +33,7 @@ class CartModel {
   //Get total price
 
   num get totalPrice =>
-      items.fold(0, (total, current) => total + current.price!);
+      items.fold(0, (total, current) => total + current.amount!);
 
   //add Item
 

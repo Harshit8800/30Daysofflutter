@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:flutter_catalog/widgets/home_widgets/add_to_cart.dart';
-import 'package:flutter_catalog/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeDetailPage extends StatelessWidget {
@@ -19,7 +18,7 @@ class HomeDetailPage extends StatelessWidget {
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: EdgeInsets.zero,
           children: [
-            "\$${catalog.price!}".text.bold.red800.xl3.make(),
+            "\$${catalog.amount!}".text.bold.red800.xl3.make(),
             AddToCart(
               catalog: catalog,
             ).wh(120, 45)

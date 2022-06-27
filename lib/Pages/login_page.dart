@@ -15,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
 
   moveToHome(BuildContext context) async {
     final form = _formKey.currentState;
-    if (form != null && !form.validate()) {
+    if (_formKey.currentState!.validate()) {
       setState(() {
         changedButton = true;
       });
@@ -55,11 +55,15 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       TextFormField(
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            hintText: "Enter Username", labelText: "Username"),
+                            hintText: "Enter Mobile No",
+                            labelText: "Mobile No."),
                         validator: (String? value) {
                           if (value != null && value.isEmpty) {
-                            return "Username can't be empty";
+                            return "Mobile No. can't be empty";
+                          } else if (value!.length < 10) {
+                            return "Mobile No. Length should be 10";
                           }
                           return null;
                         },
@@ -70,11 +74,14 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextFormField(
                         obscureText: true,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            hintText: "Enter Password", labelText: "Password"),
+                            hintText: "Enter OTP", labelText: "OTP"),
                         validator: (String? value) {
                           if (value != null && value.isEmpty) {
                             return "Password can't be empty";
+                          } else if (value!.length < 4) {
+                            return "OTP Length should be atleast 4";
                           }
 
                           return null;

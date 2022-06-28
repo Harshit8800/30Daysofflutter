@@ -1,4 +1,12 @@
-import 'package:http/http.dart';
 import 'dart:convert';
 
-class ApiServices{}
+import 'package:flutter/services.dart';
+
+class ApiServices {}
+
+class LoginApiResponse {
+  final int? mobile;
+  final int? otp;
+
+  LoginApiResponse(this.mobile, this.otp);
+}

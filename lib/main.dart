@@ -4,6 +4,8 @@ import 'package:flutter_catalog/Pages/home_page.dart';
 import 'package:flutter_catalog/Pages/interapi.dart';
 import 'package:flutter_catalog/Pages/interme.dart';
 import 'package:flutter_catalog/Pages/login_page.dart';
+import 'package:flutter_catalog/Pages/loginregistration.dart';
+
 import 'package:flutter_catalog/core/store.dart';
 import 'package:flutter_catalog/utils/routes.dart';
 import 'package:flutter_catalog/widgets/themes.dart';
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.cartRoute: (context) => CartPage(),
         MyRoutes.intermediateryRoute: (context) => intermediatery(),
         MyRoutes.apiScreenRoute: (context) => apiScreen(),
+        MyRoutes.loginRegistrationRoute: (context) => RegistrationScreen(),
       },
     );
   }

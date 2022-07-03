@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_catalog/models/password.dart';
 import 'package:flutter_catalog/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -25,6 +29,27 @@ class _LoginPageState extends State<LoginPage> {
         changedButton = false;
       });
     }
+  }
+
+  var mobno = 7042;
+  var otpno = 2580;
+  final mobileText = TextEditingController();
+  final otpText = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    loadPassword();
+  }
+
+  loadPassword() async {
+    await Future.delayed(Duration(seconds: 2));
+    final passwordJson = await rootBundle.loadString("assets/files/mob.json");
+    final decodedpass = jsonDecode(passwordJson);
+    PasswordModel.passw = List.from(decodedpass)
+        .map<LoginPassword>((pass) => LoginPassword.fromMap(pass))
+        .toList();
+    setState(() {});
   }
 
   @override
@@ -55,6 +80,11 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       TextFormField(
+                        controller: mobileText,
+                        onSaved: (value) {
+                          mobileText.text = value!;
+                        },
+                        textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                             hintText: "Enter Mobile No",
@@ -62,7 +92,9 @@ class _LoginPageState extends State<LoginPage> {
                         validator: (String? value) {
                           if (value != null && value.isEmpty) {
                             return "Mobile No. can't be empty";
-                          } else if (value!.length < 10) {
+                          } else if (!RegExp(
+                                  "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}")
+                              .hasMatch(value!)) {
                             return "Mobile No. Length should be 10";
                           }
                           return null;
@@ -73,6 +105,11 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                       TextFormField(
+                        controller: otpText,
+                        onSaved: (value) {
+                          otpText.text = value!;
+                        },
+                        textInputAction: TextInputAction.done,
                         obscureText: true,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
@@ -95,7 +132,17 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius:
                             BorderRadius.circular(changedButton ? 50 : 8),
                         child: InkWell(
-                          onTap: () => moveToHome(context),
+                          onTap: () {
+                            if (mobileText == mobno && otpText == otpno) {
+                              moveToHome(context);
+                            } else if (mobileText != mobno &&
+                                otpText != otpno) {
+                              return print(
+                                  "incorrect Mobile Number or password");
+                            }
+                            return null;
+                            // moveToHome(context);
+                          },
                           child: AnimatedContainer(
                             duration: Duration(seconds: 1),
                             alignment: Alignment.center,
@@ -117,9 +164,29 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Don't have an account ? "),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, MyRoutes.loginRegistrationRoute);
+                              },
+                              child: Text(
+                                "SignUp",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 98, 175, 238),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

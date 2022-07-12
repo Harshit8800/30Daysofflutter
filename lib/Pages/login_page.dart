@@ -46,6 +46,8 @@ class _LoginPageState extends State<LoginPage> {
     await Future.delayed(Duration(seconds: 2));
     final passwordJson = await rootBundle.loadString("assets/files/mob.json");
     final decodedpass = jsonDecode(passwordJson);
+    final encodepass = jsonEncode(decodedpass);
+
     PasswordModel.passw = List.from(decodedpass)
         .map<LoginPassword>((pass) => LoginPassword.fromMap(pass))
         .toList();
@@ -133,15 +135,18 @@ class _LoginPageState extends State<LoginPage> {
                             BorderRadius.circular(changedButton ? 50 : 8),
                         child: InkWell(
                           onTap: () {
-                            if (mobileText == mobno && otpText == otpno) {
-                              moveToHome(context);
-                            } else if (mobileText != mobno &&
-                                otpText != otpno) {
-                              return print(
-                                  "incorrect Mobile Number or password");
-                            }
-                            return null;
-                            // moveToHome(context);
+                            //                          if(mobileText != '' && otpText != ''){
+                            //     var validation = json.encode((element,index) => {  element.mobile == (mobileText) && element.otp == (otpText)});
+                            //     if(validation.length > 0){
+                            //         ('login Successful');
+                            //     }else{
+                            //         ('Neel wrong mobile or otp');
+                            //     }
+                            // }else {
+                            //     ('wrong mobile or otp');
+                            // }
+
+                            moveToHome(context);
                           },
                           child: AnimatedContainer(
                             duration: Duration(seconds: 1),
